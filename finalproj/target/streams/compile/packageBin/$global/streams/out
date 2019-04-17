@@ -1,0 +1,27 @@
+[0m[[0m[0minfo[0m] [0m[0mPackaging /Users/zachbaker/Documents/Senior Year/Spring Semester/DS2/Final Project/finalproj/target/scala-2.12/finalproj_2.12-0.1.0-SNAPSHOT.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	data/ChurnValidate.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zachbaker/Documents/Senior Year/Spring Semester/DS2/Final Project/finalproj/target/scala-2.12/classes/data/ChurnValidate.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	data/ChurnTrain.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zachbaker/Documents/Senior Year/Spring Semester/DS2/Final Project/finalproj/target/scala-2.12/classes/data/ChurnTrain.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	data/ChurnValidate$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zachbaker/Documents/Senior Year/Spring Semester/DS2/Final Project/finalproj/target/scala-2.12/classes/data/ChurnValidate$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	data/ChurnTrain$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zachbaker/Documents/Senior Year/Spring Semester/DS2/Final Project/finalproj/target/scala-2.12/classes/data/ChurnTrain$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	data/ChurnTest.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zachbaker/Documents/Senior Year/Spring Semester/DS2/Final Project/finalproj/target/scala-2.12/classes/data/ChurnTest.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	data/ChurnFull$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zachbaker/Documents/Senior Year/Spring Semester/DS2/Final Project/finalproj/target/scala-2.12/classes/data/ChurnFull$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	data/ChurnFull.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zachbaker/Documents/Senior Year/Spring Semester/DS2/Final Project/finalproj/target/scala-2.12/classes/data/ChurnFull.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MainTest.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zachbaker/Documents/Senior Year/Spring Semester/DS2/Final Project/finalproj/target/scala-2.12/classes/MainTest.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MainTest$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zachbaker/Documents/Senior Year/Spring Semester/DS2/Final Project/finalproj/target/scala-2.12/classes/MainTest$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MainTest$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zachbaker/Documents/Senior Year/Spring Semester/DS2/Final Project/finalproj/target/scala-2.12/classes/MainTest$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	data/ChurnTest$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zachbaker/Documents/Senior Year/Spring Semester/DS2/Final Project/finalproj/target/scala-2.12/classes/data/ChurnTest$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	data[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zachbaker/Documents/Senior Year/Spring Semester/DS2/Final Project/finalproj/target/scala-2.12/classes/data[0m
+[0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m

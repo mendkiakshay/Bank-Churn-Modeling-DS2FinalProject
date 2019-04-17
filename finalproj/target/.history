@@ -1,0 +1,4 @@
+run
+runMain  LogisticRegressionTest2.scala
+runMain LogisticRegressionTest2.scala
+run

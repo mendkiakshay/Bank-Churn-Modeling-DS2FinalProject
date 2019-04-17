@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/zachbaker/Documents/Senior Year/Spring Semester/DS2/Final Project/finalproj/src/main/scala/MainTest.scala:29:8: yp is already defined as value yp[0m
+[0m[[0m[31merror[0m] [0m[0m   val yp = prcp.predict()[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
