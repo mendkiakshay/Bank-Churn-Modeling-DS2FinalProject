@@ -1,5 +1,5 @@
 
-
+library(fastDummies)
 
 dat = read.csv("/Users/zachbaker/Documents/Senior Year/Spring Semester/DS2/Final Project/finalproj/RawData/Churn_Modelling.csv")
 
@@ -31,3 +31,40 @@ write.csv(dat.train,"Churn.train.csv")
 write.csv(dat.test,"Churn.test.csv")
 write.csv(dat.validate,"Churn.validate.csv")
 
+
+datB = read.csv("/Users/zachbaker/Documents/Senior Year/Spring Semester/DS2/Bank-Churn-Modeling-DS2FinalProject/finalproj/RawData/bank.csv")
+
+dumCols = dummy_cols(datB)[,c(15:25,27:28,30:32,34:36)]
+
+y = datB[,14]
+
+datB = cbind(datB[,c(1,5:12)],dumCols,y)
+
+set.seed(14)
+
+sampIndB = sample(1:nrow(datB),4069)
+
+datB.train = datB[sampIndB,]
+
+sampValB = sample(1:nrow(datB.train),452)
+
+datB.validate = datB.train[sampValB,]
+
+datB.train = datB.train[-sampValB,]
+
+datB.test = datB[-sampIndB,]
+
+sum(datB.test$y)/452
+
+sum(datB.train$y)/3617
+
+sum(datB.validate$y)/452
+
+sum(datB$y)/4521
+
+setwd("/Users/zachbaker/Documents/Senior Year/Spring Semester/DS2/Bank-Churn-Modeling-DS2FinalProject/finalproj/RawData")
+
+write.csv(datB,"Bank.Full.csv")
+write.csv(datB.train,"Bank.train.csv")
+write.csv(datB.test,"Bank.test.csv")
+write.csv(datB.validate,"Bank.validate.csv")

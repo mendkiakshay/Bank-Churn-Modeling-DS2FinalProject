@@ -21,7 +21,7 @@ object MainTest extends App{
     println(yp)
     println(lrg.fitMap (ChurnValidate.y.toInt, yp))
     //println(logReg.report)
-*/
+
    hp("bSize") = 64
    hp("eta") = 0.11875
    hp("maxEpochs") = 1000
@@ -29,7 +29,7 @@ object MainTest extends App{
    prcp.train2().eval()
    //val yp = prcp.predict()
    println(prcp.report)
-
-
+*/
+    println(BankFull.x(0))
     
 }
