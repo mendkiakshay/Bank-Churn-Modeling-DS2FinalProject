@@ -17,7 +17,7 @@ object BankValidate
 
     /** the combined data matrix 'xy'
      */
-    val fname1 = System.getProperty("user.dir")+"/RawData/Bank.Validate.csv"
+    val fname1 = System.getProperty("user.dir")+"/RawData/Bank.validate.csv"
     var xy = MatrixD(fname1)
 
     /** index for the data points (instances)
@@ -42,6 +42,3 @@ object BankValidate
 
 
 } // BikeSharing object
-
-
-

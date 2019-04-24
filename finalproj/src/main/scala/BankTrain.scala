@@ -17,7 +17,7 @@ object BankTrain
 
     /** the combined data matrix 'xy'
      */
-    val fname1 = System.getProperty("user.dir")+"/RawData/Bank.Train.csv"
+    val fname1 = System.getProperty("user.dir")+"/RawData/Bank.train.csv"
     var xy = MatrixD(fname1)
 
     /** index for the data points (instances)
@@ -42,6 +42,3 @@ object BankTrain
 
 
 } // BikeSharing object
-
-
-
