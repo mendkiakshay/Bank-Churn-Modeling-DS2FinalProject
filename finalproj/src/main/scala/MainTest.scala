@@ -11,6 +11,11 @@ import ActivationFun._
 import Optimizer._
 import scala.collection.mutable.Set
 import data._
+import Initializer._
+import MatrixTransform._
+import scala.collection.mutable.Set
+import scalation.stat.Statistic
+import PredictorMat.pullResponse
 
 object MainTest extends App{
     /*
@@ -21,15 +26,133 @@ object MainTest extends App{
     println(yp)
     println(lrg.fitMap (ChurnValidate.y.toInt, yp))
     //println(logReg.report)
-
-   hp("bSize") = 64
-   hp("eta") = 0.11875
-   hp("maxEpochs") = 1000
-   val prcp = NeuralNet_3L(ChurnTrain.oxy,null,10,hp,f_lreLU,f_sigmoid)
-   prcp.train2().eval()
-   //val yp = prcp.predict()
-   println(prcp.report)
 */
-    println(BankFull.x(0))
-    
+   hp("bSize") = 64
+   hp("eta") = 0.03
+   hp("maxEpochs") = 1000
+   val prcp = Perceptron(ChurnTrain.oxy, f1 = f_lreLU)
+   //val tpr = Perceptron(ChurnValidate.oxy)
+   //val prcp = NeuralNet_3L(ChurnTrain.oxy,null,10,hp,f_lreLU,f_sigmoid)
+   val valiX = rescaleX(ChurnTest.oxy,f_lreLU)
+   val valiY = ChurnTest.y
+   prcp.train().eval()
+   val yp = prcp.predict(valiX)
+   for(i <- 0 until yp.dim) if(yp(i)< .5) yp(i) = 0 else yp(i) = 1
+   val res = new VectorD(yp.dim)
+   var one = 0
+   var two = 0
+   var three = 0
+   var four = 0
+   for(i <- 0 until yp.dim){
+        if(yp(i) == valiY(i) && yp(i) == 1){ 
+            res(i) = 1 
+            one += 1
+        }
+        else if(valiY(i) == 1 && yp(i) == 0){
+            res(i) = 0
+            two += 1
+        }
+        else if(valiY(i) == 0 && yp(i) == 1){
+            res(i) = 0
+            three += 1
+        }
+        else{
+            res(i) = 1
+            four += 1
+        }
+   }
+   println(res.sum/res.dim)
+   println(one)
+   println(two)
+   println(three)
+   println(four)
+
+    println("Optical")
+  forwardSel(ChurnTrain.ox, ChurnTrain.y, 0.03, 64, f_lreLU, "Optical") //runtime solved
+  println("_____________________________________________________")
+  println("_____________________________________________________")
+
+   //println(prcp.report)
+
+    //println(BankFull.x(0))
+
+    def rescaleX(xy: MatrixD, f1i: AFF): MatriD = {
+        val f_ = f1i                                              // try different activation function
+        val cy = xy.dim2 - 1 
+        var itran1: FunctionV_2V = null
+        val xy_s =                                                  // scaled version of xy
+        if (f1i.bounds != null) {                            // scale to bounds
+            val extrem = extreme (xy)
+            itran1 = unscaleV ((extrem._1(cy), extrem._2(cy)), f1i.bounds) _
+            scale (xy, extrem, f1i.bounds)
+        }else {                                             // normalize
+            val (mu_xy, sig_xy) = (xy.mean, stddev (xy))
+            itran1 = denormalizeV ((mu_xy(cy), sig_xy(cy))) _
+            normalize (xy, (mu_xy, sig_xy))
+        } // if
+        
+        val (x, y) = pullResponse (xy_s)
+        setCol2One (x) 
+        x
+    }
+
+    def forwardSel(x: MatrixD, y: VectorD, eta: Double, bSize: Int, f1:AFF, datasetName:String){
+    hp("maxEpochs") = 1000
+    hp("eta") = eta
+    hp("bSize") = bSize
+    val trg = rescale(x :^+ y , f1)
+    //trg.reset (eta_ = 0.02) 
+    //trg.train().eval()
+    //println(trg.report)
+    val n = x.dim2
+    val rSq = new MatrixD(n-1,3) 
+    val fcols = Set(0)
+    for(l <- 1 until n){
+        var (x_j, b_j, fit_j) = trg.forwardSel(fcols) // add most predictive variable
+        //if(x_j < 0) x_j = l
+        fcols += x_j
+        val xcols = x.selectCols(fcols.toArray)
+        var trg_j = rescale(xcols:^+y, f1)
+        var result = trg_j.crossVal()
+        var cv = result(0).mean
+        rSq(l-1) = VectorD(fit_j(0),fit_j(7),cv) 
+    }
+
+    println("max r2 is:")
+    println(rSq.col(0).max())
+    println("max r2A is:")
+    println(rSq.col(1).max())
+    println("n* for adj r2: " + (rSq.col(1).argmax()+1))
+    println("max cv R2 is:")
+    println(rSq.col(2).max())
+    println("n* for cv r2: " + (rSq.col(2).argmax()+1))
+    println(rSq)
+    //println(rSq.col(1))
+    val t = VectorD.range(1, n)
+    new PlotM(t,
+        rSq.t*100,
+        Array("R2","R2 Adj", "CV R2"),
+        datasetName + " R square vs R bar square", true)
+
+}
+
+def rescale(xy: MatrixD, f1i: AFF): Perceptron ={
+  val f_ = f1i                                              // try different activation function
+  val cy = xy.dim2 - 1 
+  var itran1: FunctionV_2V = null
+  val xy_s =                                                  // scaled version of xy
+  if (f1i.bounds != null) {                            // scale to bounds
+    val extrem = extreme (xy)
+    itran1 = unscaleV ((extrem._1(cy), extrem._2(cy)), f1i.bounds) _
+    scale (xy, extrem, f1i.bounds)
+  }else {                                             // normalize
+    val (mu_xy, sig_xy) = (xy.mean, stddev (xy))
+    itran1 = denormalizeV ((mu_xy(cy), sig_xy(cy))) _
+    normalize (xy, (mu_xy, sig_xy))
+  } // if
+  
+  val (x, y) = pullResponse (xy_s)
+  setCol2One (x) 
+  new Perceptron (x, y, f1 = f1i, itran=itran1)
+}
 }
