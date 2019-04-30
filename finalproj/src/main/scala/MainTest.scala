@@ -17,7 +17,7 @@ import scala.collection.mutable.Set
 import scalation.stat.Statistic
 import PredictorMat.pullResponse
 
-object MainTest extends App{
+object PerceptronTest extends App{
     /*
     val lrg = new LogisticRegression(ChurnTrain.ox,ChurnTrain.y.toInt)
     //val rg = new Regression(ChurnTrain.ox, ChurnTrain.y)
@@ -30,7 +30,7 @@ object MainTest extends App{
    hp("bSize") = 64
    hp("eta") = 0.03
    hp("maxEpochs") = 1000
-   val prcp = Perceptron(ChurnTrain.oxy, f1 = f_lreLU)
+   val prcp = Perceptron(ChurnTrain.oxy++ChurnValidate.oxy, f1 = f_lreLU)
    //val tpr = Perceptron(ChurnValidate.oxy)
    //val prcp = NeuralNet_3L(ChurnTrain.oxy,null,10,hp,f_lreLU,f_sigmoid)
    val valiX = rescaleX(ChurnTest.oxy,f_lreLU)
@@ -66,12 +66,12 @@ object MainTest extends App{
    println(two)
    println(three)
    println(four)
-
+/*
     println("Optical")
   forwardSel(ChurnTrain.ox, ChurnTrain.y, 0.03, 64, f_lreLU, "Optical") //runtime solved
   println("_____________________________________________________")
   println("_____________________________________________________")
-
+*/
    //println(prcp.report)
 
     //println(BankFull.x(0))

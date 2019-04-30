@@ -23,31 +23,30 @@ import scalation.util.{banner, Error}
 import scalation.util.Unicode.sub
 
 object LogitTest extends App{
-   
-    val x = rescaleX(ChurnTrain.ox)
-    val lrg = new LogisticRegression(x,ChurnTrain.y.toInt)
+    val x = rescaleX(ChurnTrain.ox.++(ChurnValidate.ox))
+    val lrg = new LogisticRegression(x,ChurnTrain.y.++(ChurnValidate.y).toInt)
     //val rg = new Regression(ChurnTrain.ox, ChurnTrain.y)
     lrg.train()
-    val yp = lrg.classify(rescaleX(ChurnValidate.ox))
+    val yp = lrg.classify(rescaleX(ChurnTest.ox))
     //println(yp)
-    println(lrg.fitMap (ChurnValidate.y.toInt, yp))
+    println(lrg.fitMap (ChurnTest.y.toInt, yp))
     val fcols = Set(0)
-    forwardSelT(x, ChurnTrain.y,"Churn")
-    /*val res = new VectorD(yp.dim)
+    //forwardSelT(x, ChurnTrain.y,"Churn")
+    val res = new VectorD(yp.dim)
     var one = 0
     var two = 0
     var three = 0
     var four = 0
     for(i <- 0 until yp.dim){
-            if(yp(i) == ChurnValidate.y(i) && yp(i) == 1){ 
+            if(yp(i) == ChurnTest.y(i) && yp(i) == 1){ 
                 res(i) = 1 
                 one += 1
             }
-            else if(ChurnValidate.y(i) == 1 && yp(i) == 0){
+            else if(ChurnTest.y(i) == 1 && yp(i) == 0){
                 res(i) = 0
                 two += 1
             }
-            else if(ChurnValidate.y(i) == 0 && yp(i) == 1){
+            else if(ChurnTest.y(i) == 0 && yp(i) == 1){
                 res(i) = 0
                 three += 1
             }
@@ -62,7 +61,7 @@ object LogitTest extends App{
     println(three)
     println(four)
         //println(logReg.report)
-*/
+
     def forwardSel (cols: Set [Int], x: MatriD, y: VectorI): (Int, Double) = {
         val ir    =  0    
         var j_max = -1                                               // index of variable to add

@@ -28,7 +28,7 @@ object ChurnValidate
     */
     xy = xy.slice(1,xy.dim1)
 
-    xy = xy.selectCols(Array(3,4,5,7,8,9,10,11,12,13,14,15))
+    xy = xy.selectCols(Array(2,3,4,6,7,8,9,10,11,12,13,14))
 
 /** the separation of the combine data matrix 'xy' into
      *  a data/input matrix 'x' and a response/output vector 'y'

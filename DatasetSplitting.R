@@ -25,7 +25,7 @@ sum(dat.test$Exited)/1000
 
 sum(dat$Exited)/10000
 
-setwd("/Users/zachbaker/Documents/Senior Year/Spring Semester/DS2/Final Project/finalproj/RawData/")
+setwd("/Users/zachbaker/Documents/Senior Year/Spring Semester/DS2/Bank-Churn-Modeling-DS2FinalProject/finalproj/RawData/")
 
 write.csv(dat.train,"Churn.train.csv")
 write.csv(dat.test,"Churn.test.csv")
