@@ -17,26 +17,19 @@ import scala.collection.mutable.Set
 import scalation.stat.Statistic
 import PredictorMat.pullResponse
 
-object histogram extends App{
+object PerceptronBankMarketing extends App{
 
-//LogisticRegression
-/*
-    val lrg = new LogisticRegression(BankTrain.ox,BankTrain.y.toInt)
-    //val rg = new Regression(BankTrain.ox, BankTrain.y)
-    lrg.train()
-    val yp = lrg.classify(BankValidate.ox)
-    println(yp)
-    println(lrg.fitMap (BankValidate.y.toInt, yp))
-*/
 
    hp("bSize") = 40
    hp("eta") = 0.1
    hp("maxEpochs") = 5000
-   val prcp = Perceptron(BankTrain.oxy, f1 = f_lreLU)
-               //  val tpr = Perceptron(BankValidate.oxy)
-               // val prcp = NeuralNet_3L(BankTrain.oxy,null,10,hp,f_lreLU,f_sigmoid)
+
+  val prcp = Perceptron(BankTrain.oxy, f1 = f_lreLU)
+
+
    val valiX = rescaleX(BankTest.oxy,f_lreLU)
    val valiY = BankTest.y
+
    prcp.train().eval()
    val yp = prcp.predict(valiX)
 

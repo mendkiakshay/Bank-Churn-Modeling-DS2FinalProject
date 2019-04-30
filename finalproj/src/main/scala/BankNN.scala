@@ -17,42 +17,18 @@ import scala.collection.mutable.Set
 import scalation.stat.Statistic
 import PredictorMat.pullResponse
 
-object bankmain extends App{
+object BankNN extends App{
 
-//LogisticRegression
-/*
-    val lrg = new LogisticRegression(BankTrain.ox,BankTrain.y.toInt)
-    //val rg = new Regression(BankTrain.ox, BankTrain.y)
-    lrg.train()
-    val yp = lrg.classify(BankValidate.ox)
-    println(yp)
-    println(lrg.fitMap (BankValidate.y.toInt, yp))
-*/
-   //
-   // hp("bSize") = 32
-    // hp("eta") = 0.2
-   //  hp("maxEpochs") = 5000
-   // val prcp = NeuralNet_XL(BankTrain.xy)
 
-   //32 0.1 1000
    hp("bSize") = 32
    hp("eta") = 0.1
    hp("maxEpochs") = 1000
 
-   // val trainX = rescaleX(BankTrain.xy,f_lreLU)
-
-//   val prcp = new NeuralNet_XL(trainX, MatrixD(Seq(BankTrain.y)), nz =Array(20,24), f = Array (f_lreLU, f_tanh, f_sigmoid))
-
-
-//    val prcp = NeuralNet_XL(BankTrain.xy, nz =Array(20,24), af = Array (f_lreLU, f_tanh, f_sigmoid))
-
-    val prcp = NeuralNet_XL(BankTrain.xy++BankTest.xy, nz =Array(20,24), af = Array (f_lreLU, f_tanh, f_sigmoid))
+   val prcp = NeuralNet_XL(BankTrain.xy++BankTest.xy, nz =Array(20,24), af = Array (f_lreLU, f_tanh, f_sigmoid))
 
    val valiX = rescaleX(BankValidate.xy,f_lreLU)
    val valiY = BankValidate.y
 
-   // val valiX = rescaleX(BankTrain.xy,f_lreLU)
-   // val valiY = BankTrain.y
    prcp.train().eval()
    val yp1 = prcp.predict(valiX)
 
@@ -90,59 +66,6 @@ object bankmain extends App{
    println(two) //false negative
    println(three) //false positive
    println(four) //true negative
-
-  // forwardSel(BankTrain.ox, BankTrain.y, 0.1, 10, f_lreLU, "bank marketing") //runtime solved
-
-/*
-  //Zach's code here
-  hp("bSize") = 32
-  hp("eta") = 0.1
-  hp("maxEpochs") = 1000
-  var param = new MatrixD(30,4,0)
-  var count = 0
-  val names = Vector(f_sigmoid, f_tanh, f_lreLU)
-  val nodes = Vector(20,24,28)
-  var res = new VectorD(452)
-  var f0S = -1
-  var f1S = -1
-  for(nz <- nodes){
-      for(f0 <- names){
-          f0S += 1
-          f0S = f0S % 3
-          for(f1 <- names){
-              f1S += 1
-              f1S = f1S % 3
-              val nn3L = NeuralNet_XL(BankTrain.xy, nz = Array(20,nz), af = Array(f_lreLU,f0,f1))
-              val valiX = rescaleX(BankValidate.xy,f_lreLU)
-              nn3L.train().eval()
-              val yp = nn3L.predict(valiX).col(0)
-             // println(yp)
-             res = new VectorD(yp.dim)
-              for(i <- 0 until yp.dim){
-                  if(yp(i)< .5) yp(i) = 0
-                  else yp(i) = 1
-                  //res = res.zero()
-                  //println(yp(i))
-                  //println("vs.")
-                  //println(BankValidate.y(i))
-                  if(yp(i) == BankValidate.y(i)) res(i) = 1
-                  else res(i) = 0
-              }
-              param(count) = VectorD(nz.toDouble,f0S.toDouble,f1S.toDouble,res.sum/res.dim)
-              count += 1
-              println(param)
-          }
-      }
-  }
-  println(param)
-  println(param.col(3).max())
-  println(param.col(3).argmax())
-
-  */
-
-
-  //Zach's code ends
-
 
 
 

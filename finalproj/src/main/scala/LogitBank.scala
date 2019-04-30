@@ -22,7 +22,7 @@ import scalation.random.CDF.studentTCDF
 import scalation.util.{banner, Error}
 import scalation.util.Unicode.sub
 
-object LogitBankTest extends App{
+object LogitBank extends App{
 
     val x = rescaleX(BankTrain.ox)
     val lrg = new LogisticRegression(x,BankTrain.y.toInt)
@@ -31,15 +31,6 @@ object LogitBankTest extends App{
     //println(yp)
 
     println(lrg.fitMap (BankTest.y.toInt, yp))
-
-
-
-
-
-    // val fcols = Set(0)
-
-
-  //  forwardSelT(x, BankTrain.y,"Bank")
 
 
     val res = new VectorD(yp.dim)
