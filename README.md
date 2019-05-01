@@ -46,7 +46,7 @@ The datasets and links are below:
 1. Churn: Bank Customer Classification (https://www.kaggle.com/shrutimechlearn/churn-modelling)
 2. Bank Marketing: UCI Dataset: http://archive.ics.uci.edu/ml/datasets/Bank+Marketing
 
-We read each of these datasets in as a csv file, and the code is in the 
+We read each of these datasets in as a csv file, which are present in the RawData folder and the code is in the 
 corresponding scala file. For instance the Bank Train dataset is read 
 in the BankTrain.scala file and all the preprocessing is done there.
 
